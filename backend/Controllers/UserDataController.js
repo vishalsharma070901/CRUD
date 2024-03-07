@@ -87,7 +87,7 @@ exports.sendData = asyncHandler(async (req, res) => {
         name: "CRUD Application",
         address: EMAIL,
       },
-      to: "info@redpositive.in", // list of receivers
+      to: "shobits723@gmail.com", // list of receivers
       subject: "User Data", // Subject line
       text: text, // plain text body
     };
