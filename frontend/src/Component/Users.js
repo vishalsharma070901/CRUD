@@ -12,6 +12,7 @@ const Users = () => {
       .get(URL + "/api/user")
       .then((users) => setUsers(users.data))
       .catch((err) => console.log(err));
+     
   }, []);
 
   const HandleDelete = (id) => {
@@ -31,7 +32,7 @@ const Users = () => {
       transition: Bounce,
       });
   };
-  const [userId, setuserId] = useState("");
+ 
   const [ischecked, setIsChecked] = useState([]);
 
   const handleSend = async () => {
@@ -56,6 +57,7 @@ const Users = () => {
       console.log(error);
     }
   };
+
 
   return (
     <>

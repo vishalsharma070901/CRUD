@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { URL } from "../URLs";
 import { useNavigate } from "react-router-dom";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Create = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [error, setError] = useState(false);
+
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [hobby, setHobby] = useState("");
@@ -33,25 +33,18 @@ const Create = () => {
      if(name && email && phone && hobby){
       axios
       .post(URL + "/api/user/create", { name, email, phone, hobby })
-      .then((res) => { window.location.reload()})
+      .then((res) =>{console.log(res)})
       .catch((err) => console.log(err));
       
-      toast.success('Thank You!, Your data added', {
-        position: "top-center",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-        });
+      
+        navigate("/")
         
      }
    
     
   };
+
+  
   return (
     <>
       <ToastContainer

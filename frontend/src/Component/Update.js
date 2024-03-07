@@ -24,15 +24,12 @@ const Update = () => {
         setHobby(res.data.hobby);
       })
       .catch((err) => console.log(err));
-  }, []);
+  },[id]);
 
   const updateData = (e) => {
     e.preventDefault();
-    axios
-      .put(URL + "/api/user/update/" + id, { name, email, phone, hobby })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-      toast.success('Thank You!, Your data is updated', {
+    if(!name ||! email || !phone|| !hobby){
+      toast.error('Please fill all the fields', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -43,7 +40,17 @@ const Update = () => {
         theme: "colored",
         transition: Bounce,
         });
-    // navigate("/");
+      }
+      if(name && email && phone && hobby){
+        axios
+        .put(URL + "/api/user/update/" + id, { name, email, phone, hobby })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+         navigate("/");
+      }
+    
+   
+    
   };
   return (
     <>
