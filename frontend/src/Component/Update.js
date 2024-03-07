@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { URL } from "../URLs";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Update = () => {
   const navigate = useNavigate();
@@ -30,9 +32,34 @@ const Update = () => {
       .put(URL + "/api/user/update/" + id, { name, email, phone, hobby })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    navigate("/");
+      toast.success('Thank You!, Your data is updated', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
+    // navigate("/");
   };
   return (
+    <>
+    <ToastContainer
+     position="top-center"
+     autoClose={5000}
+     hideProgressBar={false}
+     newestOnTop={false}
+     closeOnClick
+     rtl={false}
+     pauseOnFocusLoss
+     draggable
+     pauseOnHover
+     theme="colored"
+     transition={Bounce}
+     />
     <section class="bg-gray-800 ">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -93,6 +120,7 @@ const Update = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

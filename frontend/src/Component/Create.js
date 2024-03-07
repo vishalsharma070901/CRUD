@@ -16,14 +16,57 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
+    if(!name ||! email || !phone|| !hobby){
+      toast.error('Please fill all the fields correctly', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
+    
+    }
+     if(name && email && phone && hobby){
+      axios
       .post(URL + "/api/user/create", { name, email, phone, hobby })
-      .then((res) => console.log(res))
+      .then((res) => { window.location.reload()})
       .catch((err) => console.log(err));
-    navigate("/");
+      
+      toast.success('Thank You!, Your data added', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
+        
+     }
+   
     
   };
   return (
+    <>
+      <ToastContainer
+     position="top-center"
+     autoClose={5000}
+     hideProgressBar={false}
+     newestOnTop={false}
+     closeOnClick
+     rtl={false}
+     pauseOnFocusLoss
+     draggable
+     pauseOnHover
+     theme="colored"
+     transition={Bounce}
+     />
     <section className="bg-gray-800 ">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -39,7 +82,7 @@ const Create = () => {
                   placeholder="Enter your Name"
                   required=""
                   onChange={(e) => setName(e.target.value)}
-                />
+                  />
               </div>
               <div>
                 <input
@@ -48,7 +91,7 @@ const Create = () => {
                   placeholder="Enter your Email"
                   required=""
                   onChange={(e) => setEmail(e.target.value)}
-                />
+                  />
               </div>
               <div>
                 <input
@@ -77,13 +120,13 @@ const Create = () => {
                   placeholder="Enter your Hobby"
                   required=""
                   onChange={(e) => setHobby(e.target.value)}
-                />
+                  />
               </div>
 
               <button
                 type="submit"
                 className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4  font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-              >
+                >
                 Add Data
               </button>
             </form>
@@ -91,6 +134,8 @@ const Create = () => {
         </div>
       </div>
     </section>
+   
+     </>
   );
 };
 

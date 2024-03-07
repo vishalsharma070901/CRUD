@@ -19,7 +19,17 @@ const Users = () => {
       console.log(res);
       window.location.reload();
     });
-    alert("Data Deleted");
+    toast.success('Data deleted sucessfully', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+      });
   };
   const [userId, setuserId] = useState("");
   const [ischecked, setIsChecked] = useState([]);
@@ -29,9 +39,19 @@ const Users = () => {
       const id = ischecked;
       console.log(id);
       await axios.post(URL + "/api/user/send-data/" + id);
-      alert("Data sent sucessfully");
-
-      console.log(id);
+      toast.success('Thank You!, Your data is being sent', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+        });
+      
+     
     } catch (error) {
       console.log(error);
     }
@@ -39,6 +59,19 @@ const Users = () => {
 
   return (
     <>
+     <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+transition={Bounce}
+/>
       <div className=" flex justify-center items-center mt-10 ">
         <div className=" overflow-x-auto shadow-md sm:rounded-lg">
           <Link to={"/create"}>
